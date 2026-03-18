@@ -53,7 +53,6 @@
     /* text floated inside stamp perforated area */
     .stamp-content {
       position: absolute;
-      /* tuned to sit inside the perforated border */
       top: 8%;
       left: 11%;
       right: 11%;
@@ -64,30 +63,36 @@
       justify-content: flex-end;
       padding-bottom: 13%;
       text-align: center;
+      overflow: visible;
     }
 
     .days-label {
       font-family: "handsome-pro", sans-serif;
       font-weight: 700;
-      font-style: italic;
       color: var(--red);
-      font-size: clamp(26px, 9.5vw, 40px);
+      font-size: clamp(34px, 13vw, 80px);
       line-height: 1;
-      margin-bottom: 0.5em;
+      letter-spacing: -3px!important;
+      /* pull it upward so it overlaps the botanical illustration */
+      margin-bottom: 0.8em;
+      margin-top: -1.8em;
       letter-spacing: -0.01em;
+      transform: rotate(6deg);
+      transform-origin: center center;
+      position: relative;
+      z-index: 2;
       opacity: 0;
-      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+      animation: fadeUpTilt 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
     }
 
     .stamp-body {
       font-family: "handsome-pro", sans-serif;
       font-weight: 500;
-      font-style: italic;
       color: var(--dark);
-      font-size: clamp(7px, 2.6vw, 10.5px);
-      line-height: 1.7;
+      font-size: clamp(9.5px, 3.5vw, 20px);
+      line-height: 1.1;
       max-width: 80%;
-      margin-bottom: 1.2em;
+      margin-bottom: 1.1em;
       opacity: 0;
       animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
     }
@@ -95,9 +100,8 @@
     .stamp-date {
       font-family: "handsome-pro", sans-serif;
       font-weight: 900;
-      font-style: normal;
       color: var(--dark);
-      font-size: clamp(6.5px, 2.4vw, 9.5px);
+      font-size: clamp(8.5px, 3vw, 20px);
       letter-spacing: 0.04em;
       opacity: 0;
       animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
@@ -121,6 +125,11 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fadeUpTilt {
+      from { opacity: 0; transform: rotate(-6deg) translateY(14px); }
+      to   { opacity: 1; transform: rotate(-6deg) translateY(0); }
+    }
+
     /* desktop */
     @media (min-width: 600px) {
       .stamp-wrapper { width: 300px; }
@@ -138,11 +147,7 @@
     <div class="stamp-content">
       <p class="days-label"><span id="dayCount">—</span> days</p>
       <p class="stamp-body">
-        We are weaving together<br>
-        the final threads of a story<br>
-        years in the making. A<br>
-        sanctuary for the skin, and<br>
-        a soul for the heart.
+        We are weaving together the final threads of a story years in the making. A sanctuary for the skin, and a soul for the heart.
       </p>
       <p class="stamp-date">13.10.2026</p>
     </div>
